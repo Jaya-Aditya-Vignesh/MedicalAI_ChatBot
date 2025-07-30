@@ -1,70 +1,175 @@
-# Getting Started with Create React App
+# MediScan AI: Medical Chatbot & X-ray Analysis Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🧠 Overview
 
-## Available Scripts
+MediScan AI is a full-stack web application designed to provide intelligent assistance for medical queries and X-ray analysis. It features a user-friendly interface built with React, a robust backend powered by Flask, and leverages large language models (LLMs) for conversational AI and specialized models for medical image analysis.
 
-In the project directory, you can run:
+This application aims to streamline access to medical information and preliminary diagnostic support, serving as a helpful tool for users seeking quick insights.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🌟 Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 💬 Medical Chatbot Assistance
+- **Multiple Upload Options**: Interact with the chatbot by uploading PDF documents, using a default text input, or providing a URL for content analysis.
+- **LLM-Powered Conversations**: Engage in natural language conversations with an AI assistant for medical inquiries (via Gemini API).
 
-### `npm test`
+### 🩻 X-ray Analysis
+- **Chest X-ray Analysis**: Upload chest X-ray images for automated analysis.
+- **Fracture X-ray Analysis**: Upload X-ray images for fracture detection and analysis.
+- **Result Display**: View preliminary analysis results directly within the application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🖥️ Responsive UI & Architecture
+- **React + Tailwind CSS** frontend for a clean and intuitive interface.
+- **Modular Project Structure**: Clear separation between frontend (React) and backend (Flask).
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Folder Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+Project/
+├── backend/
+│   ├── backend/                  # Internal Flask modules
+│   ├── documents/                # Medical documents (e.g., PDFs)
+│   ├── models/                   # ML models (.pt, .h5)
+│   ├── .env                      # Environment variables
+│   └── app.py                    # Flask application entry
+├── frontend/
+│   ├── node_modules/             # Node dependencies
+│   ├── public/                   # Static assets
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ChatBox.css
+│   │   │   └── ChatBox.js
+│   │   ├── App.js, index.js, etc.
+│   └── package.json              # Frontend scripts and dependencies
+├── MedicalAI_ChatBot/            # Optional module for chatbot logic
+└── README.md                     # This file
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🛠️ Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend
+- React.js
+- Tailwind CSS
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend
+- Flask
+- Python
+- Flask-CORS
+- python-dotenv
+- google-generativeai (Gemini API)
+- Machine Learning Libraries: TensorFlow/Keras or PyTorch
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## ⚙️ Setup Instructions
 
-## Learn More
+### ✅ Prerequisites
+Ensure you have the following installed:
+- Node.js & npm
+- Python 3.8+
+- pip
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 📥 1. Clone the Repository
 
-### Code Splitting
+```bash
+git clone https://github.com/your-username/Project.git
+cd Project
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+### 🐍 2. Backend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+cd backend
+python -m venv venv
 
-### Making a Progressive Web App
+# Windows:
+.\venv\Scripts\activate
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# macOS/Linux:
+source venv/bin/activate
 
-### Advanced Configuration
+pip install -r requirements.txt
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Example `requirements.txt`
 
-### Deployment
+```
+Flask
+Flask-CORS
+python-dotenv
+google-generativeai
+tensorflow
+scikit-learn
+opencv-python
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Create `.env` in `backend/`
 
-### `npm run build` fails to minify
+```env
+GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+### 💻 3. Frontend Setup
+
+```bash
+cd ../frontend
+npm install
+```
+
+#### Canvas Environment Notes
+- If deployed in a Canvas environment, global Firebase variables are injected.
+- Outside of Canvas, Firebase runs in mock mode (see `App.js`).
+
+---
+
+### 🚀 Running the Application
+
+#### ▶️ Start Backend
+
+```bash
+cd Project/backend
+# Activate venv
+python app.py
+# Runs on http://127.0.0.1:5000
+```
+
+#### ▶️ Start Frontend
+
+```bash
+cd Project/frontend
+npm start
+# Opens at http://localhost:3000
+```
+
+---
+
+## 🧪 Usage
+
+### 💬 Medical Chatbot
+- Navigate to **"Medical Chatbot Assistance"**
+- Choose: PDF Upload / Default Upload / URL Upload
+- Ask questions in the chat interface
+- Responses powered by Gemini-based LLMs
+
+### 🩻 X-ray Analysis
+- Navigate to **"X-ray Analysis"**
+- Select **Chest X-ray** or **Fracture X-ray**
+- Upload an image and view the AI-generated result
+
+---
+
+## 🤝 Contribution
+
+Feel free to fork this repository, submit pull requests, or report issues.
+
